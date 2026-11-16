@@ -1,10 +1,7 @@
 # GymSimu Beta – Cergyius Gym
 
-Play GymSimu Beta – Cergyius Gym in your browser with GitHub Pages, or open `index.html` locally.
+[Play GymSimu in your browser](https://pokemoneur.github.io/gymsimu-play/).
 
-## Included files
+Each browser starts with three empty save slots. Choose **New Game** to create your own trainer, gym, and team. Progress is saved only in that browser. Use the in-game export option to keep a personal backup; no shared starter save is distributed.
 
-- `index.html` — playable GymSimu build.
-- `GymSimu_Beta_Save_and_Rules.json` — downloadable saved game state and game rules.
-
-The game also saves progress in browser local storage. This game is separate from Remind-er.
+This game is separate from Remind-er.
