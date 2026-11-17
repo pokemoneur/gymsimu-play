@@ -766,6 +766,35 @@ quagsire:[[1,'Mud Shot'],[1,'Rain Dance'],[1,'Tail Whip'],[1,'Water Gun'],[12,'H
 graveler:[[1,'Defense Curl'],[1,'Rock Polish'],[1,'Tackle'],[10,'Rollout'],[12,'Bulldoze'],[16,'Rock Throw'],[18,'Smack Down'],[24,'Self-Destruct'],[30,'Stealth Rock'],[34,'Rock Blast'],[40,'Earthquake'],[44,'Explosion'],[50,'Double-Edge'],[54,'Stone Edge']],
 phanpy:[[1,'Defense Curl'],[1,'Growl'],[1,'Tackle'],[6,'Flail'],[10,'Rollout'],[15,'Bulldoze'],[19,'Endure'],[24,'Slam'],[28,'Take Down'],[33,'Charm'],[37,'Last Resort'],[42,'Double-Edge']]};
 const MINLV={blastoise:36,charizard:36,venusaur:32,dugtrio:26,sandslash:22,muk:38,rapidash:40,rhydon:42,weezing:35,dragonite:55,gyarados:20,swampert:36,quagsire:20,donphan:25,flygon:45,vibrava:35,garchomp:48,hippowdon:34,excadrill:31,krookodile:40,aggron:42,metagross:45,gardevoir:30,gastrodon:30,goodra:50,tyrantrum:39,aurorus:39,alakazam:16,gengar:25,machamp:28,vileplume:21,nidoking:16,graveler:25,electrode:30,magneton:30,marshtomp:16,trapinch:1};
+
+const ITEM_DEFS={
+ '80':{name:'Sun Stone',kind:'stone',price:1000},'81':{name:'Moon Stone',kind:'stone',price:1000},'82':{name:'Fire Stone',kind:'stone',price:1000},'83':{name:'Thunder Stone',kind:'stone',price:1000},'84':{name:'Water Stone',kind:'stone',price:1000},'85':{name:'Leaf Stone',kind:'stone',price:1000},'107':{name:'Shiny Stone',kind:'stone',price:1000},'108':{name:'Dusk Stone',kind:'stone',price:1000},'109':{name:'Dawn Stone',kind:'stone',price:1000},'885':{name:'Ice Stone',kind:'stone',price:1000},
+ '17':{name:'Potion',kind:'battle',price:200,effect:'heal20'},'26':{name:'Super Potion',kind:'battle',price:700,effect:'heal60'},'57':{name:'X Attack',kind:'battle',price:1000,effect:'attack'},
+ '699':{name:'Charizardite X',kind:'mega',price:2500,form:'charizardx'},'717':{name:'Charizardite Y',kind:'mega',price:2500,form:'charizardy'},'698':{name:'Venusaurite',kind:'mega',price:2500,form:'venusaur'},'700':{name:'Blastoisinite',kind:'mega',price:2500,form:'blastoise'},'712':{name:'Lucarionite',kind:'mega',price:2500,form:'lucario'},
+ '25':{name:'Hyper Potion',kind:'battle',effect:'heal120'},'24':{name:'Max Potion',kind:'battle',effect:'fullheal'},'28':{name:'Revive',kind:'battle',effect:'revive'},'61':{name:'X Sp. Atk',kind:'battle',effect:'spattack'},
+ '695':{name:'Gengarite',kind:'mega',form:'gengar'},'696':{name:'Gardevoirite',kind:'mega',form:'gardevoir'},'716':{name:'Absolite',kind:'mega',form:'absol'},'697':{name:'Ampharosite',kind:'mega',form:'ampharos'},'715':{name:'Gyaradosite',kind:'mega',form:'gyarados'},'718':{name:'Alakazite',kind:'mega',form:'alakazam'},'709':{name:'Scizorite',kind:'mega',form:'scizor'}
+};
+const SHOP_ITEMS=['80','81','82','83','84','85','107','108','109','885','17','26','57','699','717','698','700','712'],WIN_ITEMS=['25','24','61'];
+const STONE_EVOS={
+ '80':{gloom:['Bellossom'],sunkern:['Sunflora'],cottonee:['Whimsicott'],petilil:['Lilligant'],helioptile:['Heliolisk']},
+ '81':{nidorina:['Nidoqueen'],nidorino:['Nidoking'],clefairy:['Clefable'],jigglypuff:['Wigglytuff'],skitty:['Delcatty'],munna:['Musharna']},
+ '82':{vulpix:['Ninetales'],growlithe:['Arcanine'],eevee:['Flareon'],pansear:['Simisear'],capsakid:['Scovillain']},
+ '83':{pikachu:['Raichu'],eevee:['Jolteon'],eelektrik:['Eelektross'],tadbulb:['Bellibolt']},
+ '84':{poliwhirl:['Poliwrath'],shellder:['Cloyster'],staryu:['Starmie'],eevee:['Vaporeon'],lombre:['Ludicolo'],panpour:['Simipour']},
+ '85':{gloom:['Vileplume'],weepinbell:['Victreebel'],exeggcute:['Exeggutor'],eevee:['Leafeon'],nuzleaf:['Shiftry']},
+ '107':{togetic:['Togekiss'],roselia:['Roserade'],minccino:['Cinccino'],floette:['Florges']},
+ '108':{murkrow:['Honchkrow'],misdreavus:['Mismagius'],lampent:['Chandelure'],doublade:['Aegislash']},
+ '109':{kirlia:['Gallade'],snorunt:['Froslass']},'885':{eevee:['Glaceon'],crabrawler:['Crabominable'],cetoddle:['Cetitan']}
+};
+const MEGA={
+ charizardx:{base:'Charizard',name:'Mega Charizard X',types:['fire','dragon'],stats:[78,130,111,130,85,100],stone:'699'},charizardy:{base:'Charizard',name:'Mega Charizard Y',types:['fire','flying'],stats:[78,104,78,159,115,100],stone:'717'},
+ venusaur:{base:'Venusaur',name:'Mega Venusaur',types:['grass','poison'],stats:[80,100,123,122,120,80],stone:'698'},blastoise:{base:'Blastoise',name:'Mega Blastoise',types:['water'],stats:[79,103,120,135,115,78],stone:'700'},
+ lucario:{base:'Lucario',name:'Mega Lucario',types:['fighting','steel'],stats:[70,145,88,140,70,112],stone:'712'},gengar:{base:'Gengar',name:'Mega Gengar',types:['ghost','poison'],stats:[60,65,80,170,95,130],stone:'695'},
+ gardevoir:{base:'Gardevoir',name:'Mega Gardevoir',types:['psychic','fairy'],stats:[68,85,65,165,135,100],stone:'696'},absol:{base:'Absol',name:'Mega Absol',types:['dark'],stats:[65,150,60,115,60,115],stone:'716'},
+ ampharos:{base:'Ampharos',name:'Mega Ampharos',types:['electric','dragon'],stats:[90,95,105,165,110,45],stone:'697'},gyarados:{base:'Gyarados',name:'Mega Gyarados',types:['water','dark'],stats:[95,155,109,70,130,81],stone:'715'},
+ alakazam:{base:'Alakazam',name:'Mega Alakazam',types:['psychic'],stats:[55,50,65,175,95,150],stone:'718'},scizor:{base:'Scizor',name:'Mega Scizor',types:['bug','steel'],stats:[70,150,140,65,100,75],stone:'709'}
+};
+const hasItem=id=>!!(S.items&&S.items[id]),itemLabel=id=>(ITEM_DEFS[id]||{}).name||('Item '+id),megaForm=m=>Object.values(MEGA).find(x=>lsKey(x.base)===lsKey(m.name)&&hasItem(x.stone));const megaBattleMon=(a,mf)=>{const z=mf.stats,L=a.level,old=a.maxHp;a.megaBase=a.name;a.name=mf.name;a.types=mf.types.slice();a.stats={hp:Math.floor((2*z[0]+15)*L/100)+L+10,atk:Math.floor((2*z[1]+15)*L/100)+5,def:Math.floor((2*z[2]+15)*L/100)+5,spa:Math.floor((2*z[3]+15)*L/100)+5,spd:Math.floor((2*z[4]+15)*L/100)+5,spe:Math.floor((2*z[5]+15)*L/100)+5};a.maxHp=a.stats.hp;a.hp=Math.max(1,Math.round(a.hp*a.maxHp/old));return a};
 const EVO={marshtomp:[36,'Swampert'],wooper:[20,'Quagsire'],phanpy:[25,'Donphan'],trapinch:[35,'Vibrava'],vibrava:[45,'Flygon'],geodude:[25,'Graveler'],koffing:[35,'Weezing'],rhyhorn:[42,'Rhydon']};
 const EVOALT={'pikachu': 'with a Thunder Stone into Raichu', 'growlithe': 'with a Fire Stone into Arcanine', 'gloom': 'with a Leaf Stone into Vileplume', 'staryu': 'with a Water Stone into Starmie', 'kadabra': 'by trade into Alakazam', 'onix': 'by trade holding a Metal Coat into Steelix', 'rhydon': 'by trade holding a Protector into Rhyperior'};
 const FINALS=['blastoise', 'charizard', 'venusaur', 'dragonite', 'dugtrio', 'excadrill', 'garchomp', 'gardevoir', 'gastrodon', 'goodra', 'gyarados', 'hippowdon', 'krookodile', 'metagross', 'muk', 'rapidash', 'aggron', 'sandslash', 'tyrantrum', 'aurorus', 'arcanine', 'starmie', 'alakazam', 'machamp', 'gengar', 'raichu', 'vileplume', 'scizor', 'nidoking', 'roserade', 'weezing', 'graveler', 'swampert', 'quagsire', 'donphan', 'flygon'];
@@ -810,7 +839,42 @@ for(;;){const r=await ask({eb:'LICENSE ALTERATION',t:'Change your gym typing',h:
 const t=r.f.t,c=await ask({eb:'CONFIRM',t:`Change gym typing to ${capT(t)}?`,h:`<p>Your gym will switch from <b>${capT(cur)}</b> to <b>${capT(t)}</b>. Only Pokémon with that typing can join your party of three.</p>`,b:[{l:'Confirm',v:1,c:'primary'},{l:'Go back',v:0}]});if(!c.v)continue;
 S.gym=S.gym||{};const sp=String(S.gym.spec||'');S.gym.spec=sp&&sp[0]===sp[0].toLowerCase()?t:capT(t);log(`Gym typing changed from ${capT(cur)} to ${capT(t)}`);
 await ask({eb:'LICENSE ALTERATION',t:`Gym typing is now ${capT(t)}`,h:`<p>Your license was updated to <b>${capT(t)}</b>. ${S.roster.filter(m=>m.stored&&fitsGym(m)).length} stored Pokémon of this typing can now be retrieved into your party.</p>`,b:P});save();return true}}
-async function licenseShop(done){const bag=typeof addItem==='function';
+async 
+const addItem=(id,n=1)=>{S.items=S.items||{};S.items[id]=(S.items[id]||0)+n},useItem=id=>{if(!hasItem(id))return;S.items[id]--;if(!S.items[id])delete S.items[id]};const bagQty=id=>Math.max(0,+(S.items&&S.items[id]||0)),dropItem=useItem;
+async function stoneUse(m,id){
+ const to=(STONE_EVOS[id]&&STONE_EVOS[id][lsKey(m.name)]||[]).find(n=>BASEST[lsKey(n)]&&SPDB.some(x=>lsKey(x.n)===lsKey(n)));if(!to)return false;
+ if(id==='109'){const sex=to==='Gallade'?'male':'female',r=await ask({eb:'EVOLUTION STONE',t:'Check the Dawn Stone requirement',h:'<p>'+esc(m.name)+' can become '+esc(to)+' if it is '+sex+'. Does it meet that requirement?</p>',b:[{l:'Yes, evolve it',v:1,c:'primary'},{l:'Cancel',v:0}]});if(!r.v)return false}
+ const old=m.name;m.name=to;m.base=Object.assign({},BASEST[lsKey(to)]);if(EVOTY[lsKey(to)])m.types=EVOTY[lsKey(to)].slice();restat(m);const em=EVOMV[lsKey(to)];if(em){m.pend=m.pend||[];em.forEach(x=>m.pend.push({lv:m.level,mv:x}))}
+ useItem(id);log(old+' evolved into '+to+' using '+itemLabel(id));await ask({eb:'EVOLUTION',t:esc(old)+' evolved!',h:'<p>'+esc(old)+' evolved into <b>'+esc(to)+'</b>.</p>'});await learnAll([m]);save();return true
+}
+async function itemShop(done){
+ const r=await ask({eb:'SHOP · ITEMS & BAG',t:'Items and Mega Stones',h:'<p>All Evolution Stones cost $1,000. Five Mega Stones are available here; the other supported Mega Stones and battle items are battle rewards.</p><p><b>Bag:</b> '+(Object.keys(S.items||{}).filter(id=>hasItem(id)).map(id=>esc(itemLabel(id))+' × '+S.items[id]).join(' · ')||'Empty')+'</p>',b:[{l:'Buy an item',v:'buy',c:'primary'},{l:'Use an Evolution Stone',v:'use',c:'primary'},{l:'Back',v:0}]});
+ if(!r.v)return false;
+ if(r.v==='use'){
+   const ids=Object.keys(S.items||{}).filter(id=>hasItem(id)&&ITEM_DEFS[id]&&ITEM_DEFS[id].kind==='stone'&&S.roster.some(m=>(STONE_EVOS[id]||{})[lsKey(m.name)]));
+   if(!ids.length){await ask({t:'No usable stones',h:'<p>You do not have a stone that matches a Pokémon in your roster.</p>'});return false}
+   const a=await ask({eb:'BAG · STONES',t:'Choose a stone',h:'<label>Stone<select data-f="id">'+ids.map(id=>'<option value="'+id+'">'+esc(itemLabel(id))+' × '+S.items[id]+'</option>').join('')+'</select></label>',b:[{l:'Choose Pokémon',v:1,c:'primary'},{l:'Cancel',v:0}]});
+   if(!a.v)return false;const id=a.f.id,ms=S.roster.filter(m=>(STONE_EVOS[id]||{})[lsKey(m.name)]&&BASEST[lsKey((STONE_EVOS[id][lsKey(m.name)]||[])[0])]);
+   if(!ms.length)return false;const p=await ask({eb:'BAG · STONES',t:'Choose a Pokémon',h:'<label>Pokémon<select data-f="i">'+ms.map((m,i)=>'<option value="'+i+'">'+esc(m.name)+' · Lv '+m.level+'</option>').join('')+'</select></label>',b:[{l:'Review evolution',v:1,c:'primary'},{l:'Cancel',v:0}]});
+   if(!p.v)return false;const m=ms[+p.f.i],to=STONE_EVOS[id][lsKey(m.name)][0];
+   if(!await yes('Use '+itemLabel(id)+'?','<p>'+esc(m.name)+' will evolve into <b>'+esc(to)+'</b>. The stone will be used up.</p>','Use stone'))return false;
+   if(await stoneUse(m,id)){done();return true}return false
+ }
+ const ids=SHOP_ITEMS.filter(id=>!(ITEM_DEFS[id].kind==='mega'&&hasItem(id)));
+ const a=await ask({eb:'SHOP · ITEM LIST',t:'Choose an item',h:'<label>Item<select data-f="id">'+ids.map(id=>'<option value="'+id+'">'+esc(itemLabel(id))+' · '+$(ITEM_DEFS[id].price)+'</option>').join('')+'</select></label><label>Amount<select data-f="q"><option>1</option><option>2</option><option>5</option></select></label>',b:[{l:'Review purchase',v:1,c:'primary'},{l:'Cancel',v:0}]});
+ if(!a.v)return false;const id=a.f.id,d=ITEM_DEFS[id],n=d.kind==='mega'?1:+a.f.q,c=d.price*n;
+ if(!await yes('Buy '+itemLabel(id)+'?','<p>'+n+' × '+esc(itemLabel(id))+' costs '+$(c)+'. Balance: '+$(S.funds)+'.</p>','Buy for '+$(c)))return false;
+ if(S.funds<c){await ask({t:'Not enough money',h:'<p>You need '+$(c)+' but have '+$(S.funds)+'.</p>'});return false}
+ adj(-c,'Shop: '+n+' × '+itemLabel(id));addItem(id,n);save();await ask({eb:'SHOP · PURCHASE COMPLETE',t:'Added to your bag',h:'<p>'+n+' × <b>'+esc(itemLabel(id))+'</b> added to your bag.</p>'});done();return true
+}
+function battleItemUse(id,m){
+ const d=ITEM_DEFS[id];if(!d||d.kind!=='battle'||d.effect==='revive'||!hasItem(id))return '';let msg='';
+ const heal=n=>{const got=Math.min(n,m.maxHp-m.hp);m.hp+=got;return esc(m.name)+' restored '+got+' HP ('+m.hp+'/'+m.maxHp+').'};
+ if(d.effect==='heal20')msg=heal(20);else if(d.effect==='heal60')msg=heal(60);else if(d.effect==='heal120')msg=heal(120);else if(d.effect==='fullheal')msg=heal(m.maxHp);
+ else if(d.effect==='attack'||d.effect==='spattack'){const k=d.effect==='attack'?'atk':'spa';m.itemBoosts=m.itemBoosts||{};if(m.itemBoosts[k])return '';m.stats[k]=Math.round(m.stats[k]*1.5);m.itemBoosts[k]=true;msg=esc(m.name)+'’s '+(k==='atk'?'Attack':'Sp. Atk')+' rose for this battle.'}
+ if(msg)useItem(id);return msg
+}
+function licenseShop(done){const bag=typeof addItem==='function';
 if(bag&&bagQty('license')>0){if(await licenseUse()){dropItem('license');save();return done()}return}
 if(!await payFor('License Alteration',2500,'Lets you change your gym typing'))return;adj(-2500,'License Alteration');
 if(bag){addItem('license');const r=await ask({eb:'SHOP',t:'License Alteration added to your bag',h:'<p>Use it now or keep it in your bag. You can use it later from the Shop menu.</p>',b:[{l:'Use now',v:1,c:'primary'},{l:'Keep in bag',v:0}]});if(r.v&&await licenseUse())dropItem('license');save();return done()}
@@ -1023,11 +1087,11 @@ function mk(kind){const L=avgL(),m=mult();let t,o;aiRefill();
  const ai=aiTake(L,'regular');t=ai?ai.tr:rndT();return{v2:1,kind:'regular',tr:t,team:ai?ai.team:rndMons(1,L-5),title:'Battle challenge',desc:`You have been challenged to a battle by ${t.cls} ${t.name}, who hails from ${t.from}.`,note:`1v1, free to enter. Win ${$$(r5(120*m))}; lose ${$$(r5(80*m))}.`}}
 function genBattle(){const r=R()*100;return mk(r<20?'official':r<32?'regular':r<60?'wild':r<72?'exhibition':r<86?'tour':'league')}
 function genBonus(){const r=R()*100;if(r<40){const o=E.generateOffer('event',{day:S.day,roster:S.roster,rng:R});o.v2=1;return o}const o=mk(r<60?'regular':r<75?'exhibition':r<90?'tour':'league');o.stakes=BST[o.kind];return o}
-function ensure(){abAssign();bhAssign();(S.roster||[]).forEach(m=>{if(m.friend>100)m.friend=100});S.roster.forEach(fillMoves);S.cal=S.cal||[];S.hist=S.hist||[];S.pts=S.pts||{reputation:0,gym:0,performance:0,facility:50};if(S.pts.facility==null)S.pts.facility=50;S.log=S.log||[];S.diff=S.diff||'Easy';S.mode=S.mode||'sim';S.trained=S.trained||{};S.roster.forEach(m=>{if(!m.id)m.id=Math.random().toString(36).slice(2,8);m.friend=m.friend||0;m.streak=m.streak||0});if(S.offer&&!S.offer.v2)S.offer=null;if(S.bonus&&!S.bonus.v2)S.bonus=null;if(S.step==='battle'&&!S.offer)S.offer=genBattle();if(S.step==='bonus'&&!S.bonus)S.bonus=genBonus()}
+function ensure(){abAssign();bhAssign();(S.roster||[]).forEach(m=>{if(m.friend>100)m.friend=100});S.roster.forEach(fillMoves);S.cal=S.cal||[];S.hist=S.hist||[];S.pts=S.pts||{reputation:0,gym:0,performance:0,facility:50};if(S.pts.facility==null)S.pts.facility=50;S.log=S.log||[];S.diff=S.diff||'Easy';S.mode=S.mode||'sim';S.trained=S.trained||{};S.items=S.items||{};S.roster.forEach(m=>{if(!m.id)m.id=Math.random().toString(36).slice(2,8);m.friend=m.friend||0;m.streak=m.streak||0});if(S.offer&&!S.offer.v2)S.offer=null;if(S.bonus&&!S.bonus.v2)S.bonus=null;if(S.step==='battle'&&!S.offer)S.offer=genBattle();if(S.step==='bonus'&&!S.bonus)S.bonus=genBonus()}
 /* ---- live simulation (events) ---- */
 const snap=m=>({name:m.name,level:m.level,types:m.types,hp:m.hp,max:m.maxHp});
 function sim(mons,opp,tr){const P=mons.map(m=>E.normalize(toE(m))),O=opp.map(m=>E.normalize(m));const ev=[],sk=SKL[S.diff];let pi=0,oi=0,t=0;
- if(tr)ev.push({t:'say',s:`${tr.name}: “${tr.q}”`});ev.push({t:'send',s:'o',mon:snap(O[0])},{t:'send',s:'p',mon:snap(P[0])});
+ if(tr)ev.push({t:'say',s:`${tr.name}: “${tr.q}”`});if(P[0]){const mf=megaForm(mons[0]);if(mf){megaBattleMon(P[0],mf);ev.push({t:'say',s:mf.name+' Mega Evolved!'})}}ev.push({t:'send',s:'o',mon:snap(O[0])},{t:'send',s:'p',mon:snap(P[0])});
  while(pi<P.length&&oi<O.length&&t<200){t++;const a=P[pi],b=O[oi],ma=E.chooseMove(a,b,.9,R),mb=E.chooseMove(b,a,sk,R),pa=fxPrio(ma),pb=fxPrio(mb),sa=fxSpd(a),sb=fxSpd(b),f=pa!==pb?pa>pb:(sa>sb||(sa===sb&&R()<.5));
   for(const[at,df,mv,s]of(f?[[a,b,ma,'p'],[b,a,mb,'o']]:[[b,a,mb,'o'],[a,b,ma,'p']])){if(at.hp<=0||df.hp<=0)continue;
    fxStrike(at,df,mv,s,ev,pi)}
@@ -1074,7 +1138,7 @@ async function pick(n,eb){const el=elig();if(!el.length){await ask({t:'No Pokém
 async function heal(ms,when){const need=when==='post'?ms.some(m=>m.hp<m.maxHp||m.fatigue!=='Low'):ms.some(m=>m.hp<m.maxHp);if(!need||S.funds<50)return;
  const r=await ask({eb:{pre:'BEFORE THE BATTLE',post:'AFTER THE BATTLE',mid:'BEFORE THE NEXT MATCH'}[when],t:'Heal for $50?',h:`<p>${hpH(ms)}</p><p>Healing restores full HP and sets fatigue to Low. Balance ${$$(S.funds)} → ${$$(S.funds-50)}.</p>`,b:[{l:'Heal ($50)',v:1,c:'primary'},{l:'No, continue',v:0}]});
  if(r.v){adj(-50,'Recovery');ms.forEach(m=>{m.hp=m.maxHp;m.fatigue='Low'});save()}}
-async function manual(mons,opp,tr){const d=$('#dlg'),P=mons.map(m=>E.normalize(toE(m))),O=opp.map(m=>E.normalize(m)),ev=[],sk=SKL[S.diff];let cur=Math.max(0,P.findIndex(m=>m.hp>0)),oi=0,t=0;
+async function manual(mons,opp,tr){const d=$('#dlg'),P=mons.map(m=>E.normalize(toE(m))),O=opp.map(m=>E.normalize(m)),ev=[],sk=SKL[S.diff];let cur=Math.max(0,P.findIndex(m=>m.hp>0)),oi=0,t=0,megaUsed=false;
  const fm=s=>`<div class="fm ${s}"><div class="nm"><span class="n"></span><span class="lv"></span></div><div class="hpw"><i></i></div><small class="hpt"></small></div>`;
  d.innerHTML=`<div class="scene"><div class="arena" ${arenaBg()}>${fm('o')}<div class="sp o">${tr?trSpr(tr):''}</div>${fm('p')}<div class="sp p"></div></div><div class="msg"></div><div class="form-row ctl"></div></div>`;d.showModal();
  const q=s=>d.querySelector(s),msg=q('.msg'),z=ms=>new Promise(x=>setTimeout(x,ms));
@@ -1082,7 +1146,7 @@ async function manual(mons,opp,tr){const d=$('#dlg'),P=mons.map(m=>E.normalize(t
  const anim=(el,c)=>{el.classList.remove('faint','enter','shake','lungep','lungeo',c);void el.offsetWidth;el.classList.add(c)};
  const hp=(s,c,m)=>{const f=q('.fm.'+s),i=f.querySelector('.hpw i'),p=Math.max(0,c/m);i.style.width=100*p+'%';i.className=p>.5?'':p>.2?'mid':'low';f.querySelector('.hpt').textContent=`${Math.max(0,c)}/${m}`};
  const who=s=>s==='o'&&tr?tr.name+'’s ':s==='o'?'The wild ':'';
- const show=(s,m)=>{const f=q('.fm.'+s),p=q('.sp.'+s);f.querySelector('.n').textContent=m.name;f.querySelector('.lv').textContent='Lv '+m.level;hp(s,m.hp,m.maxHp);p.innerHTML=spr(m.name,m.types,s==='p');anim(p,'enter')};
+ const show=(s,m)=>{const f=q('.fm.'+s),p=q('.sp.'+s);f.querySelector('.n').textContent=m.name;f.querySelector('.lv').textContent='Lv '+m.level;hp(s,m.hp,m.maxHp);p.innerHTML=spr(m.megaBase||m.name,m.types,s==='p');anim(p,'enter')};
  const choose=html=>new Promise(res=>{const c=q('.ctl');c.innerHTML=html;c.querySelectorAll('button').forEach(b=>b.onclick=()=>{c.innerHTML='';res(b.dataset.v)})});
  const pickSw=async forced=>{const al=P.map((m,i)=>[m,i]).filter(x=>x[0].hp>0&&x[1]!==cur);if(!al.length)return forced?cur:null;const v=await choose(`<div class="mv-grid">${al.map(x=>`<button class="secondary-button" data-v="${x[1]}">${esc(x[0].name)}<small>Lv ${x[0].level} · ${x[0].hp}/${x[0].maxHp} HP</small></button>`).join('')}${forced?'':'<button class="subtle" data-v="back">Back</button>'}</div>`);return v==='back'?null:+v};
  const hit=async(s,at,df,mv)=>{if(at.hp<=0||df.hp<=0)return;const T=s==='p'?'o':'p',A=q('.sp.'+s),D=q('.sp.'+T);at.mvd=true;const pre=fxPre(at);if(pre.txt)await say(`${who(s)}${at.name} ${pre.txt}`);if(pre.skip)return;
@@ -1099,11 +1163,9 @@ const resid=async(s,m)=>{m.flinch=false;m.mvd=false;const n=fxResid(m);if(!n)ret
  if(tr)await say(`${tr.name}: “${tr.q}”`);
  await say(tr?`${tr.name} sends out ${O[0].name}!`:`A wild ${O[0].name} appears!`);show('o',O[0]);await say(`Go, ${P[cur].name}!`);show('p',P[cur]);
  while(oi<O.length&&P.some(m=>m.hp>0)&&t<300){t++;const a=P[cur],b=O[oi];let act=null;
-  for(;;){let mvs=a.moves.filter(m=>m.category!=='status'&&m.power>0);if(!mvs.length)mvs=[{name:'Struggle',type:'normal',category:'physical',power:50,accuracy:100}];
-   const v=await choose(`<div class="mv-grid">${mvs.map((m,i)=>`<button class="secondary-button" data-v="${i}">${esc(m.name)}<small>${esc(String(m.type).toUpperCase())} · ${m.category==='special'?'SPECIAL':'PHYSICAL'} · Damage ${m.power} · Acc ${m.accuracy}%</small></button>`).join('')}<button class="subtle" data-v="sw">Pokémon</button></div>`);
-   if(v==='sw'){const i=await pickSw(false);if(i==null)continue;act={sw:i}}else act={mv:mvs[+v]};break}
+  for(;;){let mvs=a.moves.filter(m=>m.category!=='status'&&m.power>0);if(!mvs.length)mvs=[{name:'Struggle',type:'normal',category:'physical',power:50,accuracy:100}];const mf=!megaUsed&&megaForm(a),v=await choose('<div class="mv-grid">'+mvs.map((m,i)=>'<button class="secondary-button" data-v="'+i+'">'+esc(m.name)+'<small>'+esc(String(m.type).toUpperCase())+' · '+(m.category==='special'?'SPECIAL':'PHYSICAL')+' · Damage '+m.power+' · Acc '+m.accuracy+'%</small></button>').join('')+'<button class="subtle" data-v="sw">Pokémon</button><button class="subtle" data-v="bag">Bag items</button>'+(mf?'<button class="primary" data-v="mega">Mega Evolve: '+esc(mf.name)+'</button>':'')+'</div>');if(v==='mega'&&mf){megaUsed=true;megaBattleMon(a,mf);show('p',a);await say(a.megaBase+' Mega Evolved into '+a.name+'!');continue}if(v==='bag'){const bi=Object.keys(S.items||{}).filter(id=>hasItem(id)&&ITEM_DEFS[id]&&ITEM_DEFS[id].kind==='battle'&&ITEM_DEFS[id].effect!=='revive');if(!bi.length){await say('Your bag has no usable battle items. Buy some from the Shop.');continue}const id=await choose('<div class="mv-grid">'+bi.map(i=>'<button class="secondary-button" data-v="'+i+'">'+esc(itemLabel(i))+' × '+S.items[i]+'</button>').join('')+'<button class="subtle" data-v="back">Back</button></div>');if(id==='back')continue;act={item:id};break}if(v==='sw'){const i=await pickSw(false);if(i==null)continue;act={sw:i}}else act={mv:mvs[+v]};break}
   const mb=E.chooseMove(b,a,sk,R);
-  if(act.sw!=null){await say(`Come back, ${a.name}!`);cur=act.sw;show('p',P[cur]);await say(`Go, ${P[cur].name}!`);await hit('o',b,P[cur],mb)}
+  if(act.item){const text=battleItemUse(act.item,a);if(text){hp("p",a.hp,a.maxHp);await say(text)}await hit("o",b,a,mb)}else if(act.sw!=null){await say(`Come back, ${a.name}!`);cur=act.sw;show('p',P[cur]);await say(`Go, ${P[cur].name}!`);await hit('o',b,P[cur],mb)}
   else{const pa=fxPrio(act.mv),pb=fxPrio(mb),sa=fxSpd(a),sb=fxSpd(b),f=pa!==pb?pa>pb:(sa>sb||(sa===sb&&R()<.5)),seq=f?[['p',a,b,act.mv],['o',b,a,mb]]:[['o',b,a,mb],['p',a,b,act.mv]];for(const[s,x,y,m]of seq)await hit(s,x,y,m);await resid('p',a);await resid('o',b)}
   if(O[oi].hp<=0){oi++;if(oi<O.length){show('o',O[oi]);await say(tr?`${tr.name} sends out ${O[oi].name}!`:`A wild ${O[oi].name} appears!`)}}
   if(P[cur].hp<=0&&P.some(m=>m.hp>0)){const i=await pickSw(true);cur=i;show('p',P[cur]);await say(`Go, ${P[cur].name}!`)}}
@@ -1129,7 +1191,7 @@ async function runMatch(o,stk){curKind=o.kind;curVen=o.ven||0;const m=mult();let
  else if(o.kind==='regular'){const v=r5((w?120:-80)*m);adj(v,`Battle vs ${o.tr.name}`);h=`${v>0?'Prize +':'You pay '}${$$(Math.abs(v))}.`}
  else if(o.kind==='exhibition'){if(w){adj(r5(100*m),`Exhibition vs ${o.tr.name}`);h=`Exhibition prize +${$$(r5(100*m))}.`}else h='Friendly match: no penalty.'}
  else if(o.kind==='league'){if(w){adj(2*fee,'League winnings');h=`You take both stakes: +${$$(2*fee)}.`}else h=`You lose your ${$$(fee)} stake.`}
- h+=await luck(w);if(w&&(o.kind==='official'||o.kind==='exhibition'||o.kind==='league'))await tmDrop(o.kind);if(stk)await pts(w?stk.win:stk.lose,o.title);
+ h+=await luck(w);if(w&&(o.kind==='official'||o.kind==='exhibition'||o.kind==='league')){await tmDrop(o.kind);await itemDrop(o.kind)}if(stk)await pts(w?stk.win:stk.lose,o.title);
  await showRes(w?'Victory!':'Defeat',{tr:o.tr,w,r,mons},h);
  if(o.kind==='wild'){if(w)await capture(o.wild)}
  await heal(mons,'post');return true}
@@ -1141,7 +1203,7 @@ async function runTourOld(o,stk){curKind='tour';const f=o.fee;if(S.funds<f){awai
   if(i===0)await heal(mons,'pre');const r=await fight(mons,dbl&&rd.team.length<2?rd.team.concat(rndMons(1,rd.team[0]?rd.team[0].level:avgL())):rd.team,rd.tr,dbl),w=r.w;
   await showRes(w?`Match ${i+1}: you won!`:`Match ${i+1}: you lost`,{tr:rd.tr,w,r,mons},w?(i<n-1?`You advance to match ${i+2} of ${n}.`:'You won the final!'):'You are knocked out. The event is over for you.');
   if(!w){if(stk)d=addp(d,stk.lose);break}won++;if(stk)d=addp(d,stk.perRound);if(i<n-1)await heal(mons,'mid')}
- const champ=won===n;let h='';if(champ){adj(750,`Tournament winnings: ${o.title}`);await tmDrop('tour');h=`Prize +${$$(750)}!`;if(stk)d=addp(d,stk.champion);h+=await luck(true)}if(stk)await pts(d,o.title);
+ const champ=won===n;let h='';if(champ){adj(750,`Tournament winnings: ${o.title}`);await tmDrop('tour');await itemDrop('tour');h=`Prize +${$$(750)}!`;if(stk)d=addp(d,stk.champion);h+=await luck(true)}if(stk)await pts(d,o.title);
  await heal(mons,'post');await ask({eb:'TOURNAMENT RESULT',t:champ?'You won the tournament!':`Eliminated after ${won} win${won===1?'':'s'}`,h:`<p>${won} of ${n} matches won. ${h}</p>${stk?`<div class="confirmation">${fmtP(d)}</div>`:''}`});return true}
 const addp=(a,b)=>({reputation:(a.reputation||0)+(b.reputation||0),gym:(a.gym||0)+(b.gym||0),performance:(a.performance||0)+(b.performance||0)});
 const runOffer=async(o,stk)=>{const w0=S.official.w,ok=await(o.kind==='tour'?runTour(o,stk):runMatch(o,stk));if(ok&&o.lg)await lgResult(S.official.w>w0);return ok};
@@ -4759,7 +4821,7 @@ const TMDATA=`1|Take Down|normal|physical|90|85
 const TMT={},TMI={};TMDATA.split('\n').forEach(l=>{const[n,nm,ty,ca,pw,ac]=l.split('|');TMT[nm]=ty;TMI[nm]={no:+n,type:ty,cat:ca,pw:+pw,acc:+ac}});
 const tmLabel=nm=>{const i=TMI[nm];return i?`TM${String(i.no).padStart(3,'0')} ${nm}`:nm};
 const tmInfo=nm=>{const i=TMI[nm];return i?`${capT(i.type)} · ${i.cat==='special'?'Special':'Physical'} · Power ${i.pw} · Acc ${i.acc}%`:''};
-async function tmDrop(kind){const p=kind==='tour'?1:kind==='official'?.45:kind==='league'?.35:.25;if(R()>=p)return;S.tms=S.tms||[];const free=Object.keys(TMT).filter(m=>!S.tms.includes(m));if(!free.length)return;const mv=pk(free);S.tms.push(mv);log(`Received TM: ${mv}`);await ask({eb:'BONUS PRIZE',t:'You received a TM!',h:`<p><b>${esc(tmLabel(mv))}</b><br><small>${esc(tmInfo(mv))}</small></p><p>Teach it from a Pokémon’s card with “Teach TM”. TMs are reusable.</p>`})}
+async function itemDrop(kind){const chance=kind==='tour'?1:kind==='official'?.45:kind==='league'?.35:.25;if(R()>=chance)return;S.items=S.items||{};const prizes=Object.keys(MEGA).map(k=>MEGA[k].stone).filter(id=>!SHOP_ITEMS.includes(id)&&!hasItem(id));const id=prizes.length&&R()<.35?pk(prizes):pk(WIN_ITEMS);addItem(id);log('Battle reward: '+itemLabel(id));await ask({eb:'BATTLE REWARD',t:'You found an item!',h:'<p><b>'+esc(itemLabel(id))+'</b> added to your bag.</p>'})} async function tmDrop(kind){const p=kind==='tour'?1:kind==='official'?.45:kind==='league'?.35:.25;if(R()>=p)return;S.tms=S.tms||[];const free=Object.keys(TMT).filter(m=>!S.tms.includes(m));if(!free.length)return;const mv=pk(free);S.tms.push(mv);log(`Received TM: ${mv}`);await ask({eb:'BONUS PRIZE',t:'You received a TM!',h:`<p><b>${esc(tmLabel(mv))}</b><br><small>${esc(tmInfo(mv))}</small></p><p>Teach it from a Pokémon’s card with “Teach TM”. TMs are reusable.</p>`})}
 A.tm=async d=>{const m=S.roster.find(x=>String(x.id)===String(d.id));if(!m)return;const tms=S.tms||[];if(!tms.length){await ask({t:'No TMs yet',h:'<p>Win exhibitions, official battles, league matches or tournaments to earn TMs.</p>'});return}
 const cand=tms.filter(x=>!(m.moves||[]).includes(x)&&canTM(m,x));
 if(!cand.length){await ask({t:'Nothing to teach',h:`<p>${esc(m.name)} cannot learn any of your TMs: none of your TMs fit its real move list, or it already knows them.</p>`});return}
@@ -4772,8 +4834,8 @@ if(Array.isArray(arr)){arr.forEach(a=>{if(a&&a.name&&Array.isArray(a.team)&&a.te
 function aiTake(L,kind){const pool=S.aiPool||[];if(!pool.length)return null;const a=pool.shift();try{regSp();const team=[];for(const m of a.team.slice(0,kind==='regular'?1:3)){const s=SPDB.find(x=>x.n===m.pokemon);if(!s||s.f==='L'||s.f==='M'||!(s.basic||s.lv))continue;const lv=Math.max(5,Math.min(L+3,Math.max(L-5,Math.round(+m.level)||L)));if(!s.basic&&s.min>lv)continue;const mon=mkMon(s.n,lv),ms=(m.moves||[]).filter(x=>TMT[x]||x==='Tackle');if(ms.length>=2)mon.moves=[...new Set(ms)].slice(0,4);team.push(mon)}
 if(!team.length)return null;const nm=String(a.name).slice(0,18);return{tr:{cls:String(a.class||'Trainer').slice(0,22),name:nm,from:String(a.from||'Kalos').slice(0,28),q:String(a.quote||'Let us battle!').slice(0,140),color:PAL[(nm.length+nm.charCodeAt(0))%PAL.length],sl:(SPRT.find(x=>x[0]===a.sprite)||pk(SPRT))[0]},team}}catch(e){return null}}
 
-function simD(mons,opp,tr){const P=mons.slice(0,2).map(m=>E.normalize(toE(m))),O=opp.slice(0,2).map(m=>E.normalize(m));const ev=[],sk=SKL[S.diff];let t=0;
-if(tr)ev.push({t:'say',s:`${tr.name}: “${tr.q}”`});O.forEach((m,i)=>ev.push({t:'send',s:'o',i,mon:snap(m)}));P.forEach((m,i)=>ev.push({t:'send',s:'p',i,mon:snap(m)}));
+function simD(mons,opp,tr){const P=mons.slice(0,2).map(m=>E.normalize(toE(m))),O=opp.slice(0,2).map(m=>E.normalize(m));const ev=[],sk=SKL[S.diff];let t=0,megaUsed=false;
+if(tr)ev.push({t:'say',s:`${tr.name}: “${tr.q}”`});const mi=P.findIndex((m,i)=>megaForm(mons[i]));if(mi>=0){const mf=megaForm(mons[mi]);megaBattleMon(P[mi],mf);megaUsed=true;ev.push({t:'say',s:mf.name+' Mega Evolved!'})}O.forEach((m,i)=>ev.push({t:'send',s:'o',i,mon:snap(m)}));P.forEach((m,i)=>ev.push({t:'send',s:'p',i,mon:snap(m)}));
 const al=a=>a.filter(x=>x.hp>0);
 while(al(P).length&&al(O).length&&t<150){t++;const acts=[];
 P.forEach((a,i)=>{if(a.hp>0)acts.push({a,s:'p',i,foes:O})});O.forEach((a,i)=>{if(a.hp>0)acts.push({a,s:'o',i,foes:P})});
@@ -4832,7 +4894,7 @@ mine.w=w?me:opp;alive=ms.map(m=>m.w);
 await showRes(w?`Round ${ri+1}: you won!`:`Round ${ri+1}: you lost`,{tr:opp,w,r,mons},w?(ri<RN-1?'You advance to the next round.':'You won the final!'):'You are knocked out of the bracket.');
 if(!w){elim=true;if(stk)d=addp(d,stk.lose);break}won++;if(stk)d=addp(d,stk.perRound);if(ri<RN-1)await heal(mons,'mid')}
 if(elim){for(let rj=rounds.length;rj<RN;rj++){const ms=[];for(let i=0;i<alive.length;i+=2){const a=alive[i],b=alive[i+1];ms.push({a,b,me:false,w:bstr(a)*(.4+R())>=bstr(b)*(.4+R())?a:b})}rounds.push(ms);alive=ms.map(m=>m.w)}}
-const champ=!elim;LASTTOUR={champ,name:champ?me.name:((alive[0]||{}).name||'?')};let h='';if(champ){adj(750,`Tournament winnings: ${o.title}`);await tmDrop('tour');h=`Prize +${$$(750)}!`;if(stk)d=addp(d,stk.champion);h+=await luck(true)}if(stk)await pts(d,o.title);
+const champ=!elim;LASTTOUR={champ,name:champ?me.name:((alive[0]||{}).name||'?')};let h='';if(champ){adj(750,`Tournament winnings: ${o.title}`);await tmDrop('tour');await itemDrop('tour');h=`Prize +${$$(750)}!`;if(stk)d=addp(d,stk.champion);h+=await luck(true)}if(stk)await pts(d,o.title);
 await heal(mons,'post');await ask({eb:'TOURNAMENT RESULT',t:champ?'You won the tournament!':`Eliminated after ${won} win${won===1?'':'s'}`,h:`${bracketHtml(rounds)}<p>${won} of ${RN} rounds won. ${champ?'':`Champion: <b>${esc((alive[0]||{}).name||'?')}</b>. `}${h}</p>${stk?`<div class="confirmation">${fmtP(d)}</div>`:''}`});return true}
 
 const CHARDB_RAW=`Falkner|HGSS|Pidgey:9,Pidgeotto:13
@@ -6515,7 +6577,7 @@ A.m=async d=>{const i=+d.i,m=mult();
   await pts(dl,'Community Trainer Workshop');
   await ask({t:'Workshop complete',h:`<p>${esc(result.text)}</p><p>${esc(bonusText)}</p><div class="confirmation">${fmtP(dl)}</div><p>Facility: ${S.pts.facility}%</p>`});
   return done()
- } const t=await ask({eb:'SHOP',t:'Welcome to the Shop',h:'<p>The Shop uses this period’s maintenance action.</p>',b:[{l:'Poké Balls',v:'balls',c:'primary'},{l:'Training Programs',v:'train',c:'primary'},{l:'Move Reminder ($50)',v:'move',c:'primary'},{l:'Events: tournaments and exhibitions',v:'events',c:'primary'},{l:(typeof bagQty==='function'&&bagQty('license')>0)?`Use License Alteration (${bagQty('license')})`:'License Alteration ($2,500)',v:'lic',c:'primary'},{l:'Cancel',v:0}]});if(!t.v)return;if(t.v==='events'){if(await bonusMenu())return done();return}if(t.v==='move')return moveRem(done);if(t.v==='lic')return licenseShop(done);
+ } const t=await ask({eb:'SHOP',t:'Welcome to the Shop',h:'<p>The Shop uses this period’s maintenance action.</p>',b:[{l:'Poké Balls',v:'balls',c:'primary'},{l:'Training Programs',v:'train',c:'primary'},{l:'Move Reminder ($50)',v:'move',c:'primary'},{l:'Items & Mega Stones',v:'items',c:'primary'},{l:'Events: tournaments and exhibitions',v:'events',c:'primary'},{l:(typeof bagQty==='function'&&bagQty('license')>0)?`Use License Alteration (${bagQty('license')})`:'License Alteration ($2,500)',v:'lic',c:'primary'},{l:'Cancel',v:0}]});if(!t.v)return;if(t.v==='items')return itemShop(done);if(t.v==='events'){if(await bonusMenu())return done();return}if(t.v==='move')return moveRem(done);if(t.v==='lic')return licenseShop(done);
  if(t.v==='balls'){const q=await ask({eb:'SHOP · POKÉ BALLS',t:'Buy Poké Balls',h:`<p>$100 each. You own ${S.balls}.</p><select data-f="q">${[1,2,3,5,10].map(x=>`<option>${x}</option>`).join('')}</select>`,b:[{l:'Review purchase',v:1,c:'primary'},{l:'Cancel',v:0}]});if(!q.v)return;const n=+q.f.q;
   if(!await payFor(`${n} Poké Ball${n>1?'s':''}`,100*n,`Poké Balls ${S.balls} → ${S.balls+n}`))return;adj(-100*n,`${S.period} maintenance: Shop (${n} Poké Balls)`);S.balls+=n;return done()}
  const ok=S.roster.filter(x=>S.trained[x.id]!==S.day);if(!ok.length){await ask({t:'No one can train today',h:'<p>Each Pokémon can use only one training package per day.</p>'});return}
