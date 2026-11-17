@@ -874,7 +874,7 @@ function battleItemUse(id,m){
  else if(d.effect==='attack'||d.effect==='spattack'){const k=d.effect==='attack'?'atk':'spa';m.itemBoosts=m.itemBoosts||{};if(m.itemBoosts[k])return '';m.stats[k]=Math.round(m.stats[k]*1.5);m.itemBoosts[k]=true;msg=esc(m.name)+'’s '+(k==='atk'?'Attack':'Sp. Atk')+' rose for this battle.'}
  if(msg)useItem(id);return msg
 }
-function licenseShop(done){const bag=typeof addItem==='function';
+async function licenseShop(done){const bag=typeof addItem==='function';
 if(bag&&bagQty('license')>0){if(await licenseUse()){dropItem('license');save();return done()}return}
 if(!await payFor('License Alteration',2500,'Lets you change your gym typing'))return;adj(-2500,'License Alteration');
 if(bag){addItem('license');const r=await ask({eb:'SHOP',t:'License Alteration added to your bag',h:'<p>Use it now or keep it in your bag. You can use it later from the Shop menu.</p>',b:[{l:'Use now',v:1,c:'primary'},{l:'Keep in bag',v:0}]});if(r.v&&await licenseUse())dropItem('license');save();return done()}
